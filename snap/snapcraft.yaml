@@ -1,0 +1,50 @@
+name: pencil
+base: core22
+version: '3.1.1'
+summary: Sketching and GUI prototyping/wireframing tool
+description: |
+  The Pencil Project's unique mission is to build a free and opensource 
+  tool for making diagrams and GUI prototyping that everyone can use.
+license: GPL-2.0
+icon: snap/gui/pencil.png
+grade: stable
+confinement: strict
+
+architectures:
+  - build-on: amd64
+
+parts:
+  pencil:
+    plugin: dump
+    source: https://pencil.evolus.vn/dl/V3.1.1.ga/Pencil_3.1.1.ga_amd64.deb
+    source-checksum: sha1/7faa077207ac33bcaa90294c8cc8b4abec8f687e
+    prime:
+      - -opt/Pencil/chrome-sandbox
+    stage-packages:
+      - libnspr4
+      - libnss3
+      - libxss1
+apps:
+  pencil:
+    extensions: [gnome]
+    command: opt/Pencil/pencil --no-sandbox
+    environment:
+      # Correct the TMPDIR path for Chromium Framework/Electron to
+      # ensure libappindicator has readable resources
+      TMPDIR: $XDG_RUNTIME_DIR
+      # Coerce XDG_CURRENT_DESKTOP to Unity so that App Indicators
+      # are used and do not fall back to Notification Area applets
+      # or disappear completely.
+      XDG_CURRENT_DESKTOP: Unity
+      # Fallback to XWayland if running in a Wayland session.
+      DISABLE_WAYLAND: 1
+    plugs:
+      - browser-support
+      - camera
+      - home
+      - network
+      - network-bind
+      - opengl
+      - pulseaudio
+      - screen-inhibit-control
+      - unity7
