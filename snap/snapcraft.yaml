@@ -1,6 +1,6 @@
 name: pencil
 base: core22
-version: '3.1.1'
+version: '4.0.0'
 summary: Sketching and GUI prototyping/wireframing tool
 description: |
   The Pencil Project's unique mission is to build a free and opensource 
@@ -16,8 +16,8 @@ architectures:
 parts:
   pencil:
     plugin: dump
-    source: https://pencil.evolus.vn/dl/V3.1.1.ga/Pencil_3.1.1.ga_amd64.deb
-    source-checksum: sha1/7faa077207ac33bcaa90294c8cc8b4abec8f687e
+    source: https://github.com/evolus/pencil/releases/download/v4.0.0/Pencil_4.0.0.ga_amd64.deb
+    source-checksum: sha256/b70c125523cf9ee72fba12ed7610ad0a52cb28ca9081555cbaca5971efb0fc29
     prime:
       - -opt/Pencil/chrome-sandbox
     stage-packages:
